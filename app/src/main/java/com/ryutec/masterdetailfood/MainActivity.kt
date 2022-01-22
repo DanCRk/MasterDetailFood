@@ -10,7 +10,7 @@ import com.ryutec.masterdetailfood.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var binding : ActivityMainBinding
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    fun setNavController (){
+    fun setNavController() {
         // Asignar el bottom nav
         val btmNav = binding.bottomNav
         // Instanciar un controllador
