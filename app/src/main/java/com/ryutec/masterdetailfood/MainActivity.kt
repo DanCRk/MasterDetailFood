@@ -2,6 +2,8 @@ package com.ryutec.masterdetailfood
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import androidx.core.content.ContextCompat
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
 import com.ryutec.masterdetailfood.databinding.ActivityMainBinding
