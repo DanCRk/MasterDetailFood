@@ -19,7 +19,7 @@ class MealViewModel @Inject constructor(
 
     fun onCreate(){
         viewModelScope.launch {
-            val result = getRandomMealUseCase("random.php")
+            val result = getRandomMealUseCase()
             if (!result.idMeal.equals(null)){
                 randomMeal.postValue(result)
             }

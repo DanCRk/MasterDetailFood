@@ -9,7 +9,7 @@ class Repository @Inject constructor(private val api: MealService, private val p
 
     suspend fun getAllMeals(url:String): MealList{
         val response = api.getMeal(url)
-        provider.Meals = response
+        provider.meals = response
         return response
     }
 }
