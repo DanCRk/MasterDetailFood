@@ -7,17 +7,17 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.ryutec.masterdetailfood.HomeFragment"
+        android:name="com.ryutec.masterdetailfood.ui.view.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/favoritesFragment"
-        android:name="com.ryutec.masterdetailfood.FavoritesFragment"
+        android:name="com.ryutec.masterdetailfood.ui.view.FavoritesFragment"
         android:label="fragment_favorites"
         tools:layout="@layout/fragment_favorites" />
     <fragment
         android:id="@+id/categoriesFragment"
-        android:name="com.ryutec.masterdetailfood.CategoriesFragment"
+        android:name="com.ryutec.masterdetailfood.ui.view.CategoriesFragment"
         android:label="fragment_categories"
         tools:layout="@layout/fragment_categories" />
 </navigation>

@@ -1,13 +1,15 @@
-package com.ryutec.masterdetailfood
+package com.ryutec.masterdetailfood.ui.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import androidx.core.content.ContextCompat
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
+import com.ryutec.masterdetailfood.R
 import com.ryutec.masterdetailfood.databinding.ActivityMainBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
