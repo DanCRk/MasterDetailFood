@@ -7,17 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
-import com.ryutec.masterdetailfood.R
-import com.ryutec.masterdetailfood.data.network.FoodAPIClient
-import com.ryutec.masterdetailfood.data.network.MealService
 import com.ryutec.masterdetailfood.databinding.FragmentHomeBinding
 import com.ryutec.masterdetailfood.ui.viewmodel.MealViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import dagger.hilt.android.HiltAndroidApp
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-import javax.inject.Inject
-
 @AndroidEntryPoint
 class HomeFragment : Fragment(){
 
@@ -28,7 +20,7 @@ class HomeFragment : Fragment(){
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
@@ -36,13 +28,16 @@ class HomeFragment : Fragment(){
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        mealViewModel.onCreate()
 
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
+        mealViewModel.randomMeal.observe(this, {
+            Glide.with(this).load(it.strMealThumb).into(binding.imgRandomMeal)
+        })
 
     }
 

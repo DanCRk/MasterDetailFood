@@ -6,9 +6,9 @@ import com.ryutec.masterdetailfood.data.model.MealList
 import com.ryutec.masterdetailfood.data.network.MealService
 import javax.inject.Inject
 
-class GetMealUseCase @Inject constructor(private val repository: Repository){
+class GetRandomMealUseCase @Inject constructor(private val repository: Repository){
 
-    suspend operator fun invoke(url:String): MealList {
-        return repository.getAllMeals(url)
+    suspend operator fun invoke(url:String): Meal {
+        return repository.getAllMeals(url).meals[0]
     }
 }
