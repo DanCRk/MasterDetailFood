@@ -74,6 +74,7 @@
                 app:layout_constraintStart_toStartOf="parent">
 
                 <TextView
+                    android:id="@+id/categoty"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Category"
@@ -82,9 +83,10 @@
                     android:layout_weight="1"
                     app:drawableLeftCompat="@drawable/ic_category"
                     app:drawableTint="@color/text_color"
-                     />
+                    tools:ignore="HardcodedText" />
 
                 <TextView
+                    android:id="@+id/area"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Area"
@@ -92,7 +94,8 @@
                     android:textColor="@color/text_color"
                     android:layout_weight="1"
                     app:drawableTint="@color/text_color"
-                    app:drawableLeftCompat="@drawable/ic_location" />
+                    app:drawableLeftCompat="@drawable/ic_location"
+                    tools:ignore="HardcodedText" />
 
             </LinearLayout>
 
@@ -108,9 +111,11 @@
                 app:layout_constraintTop_toBottomOf="@id/ly"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:layout_marginStart="@dimen/_5sdp"
-                android:textStyle="bold"/>
+                android:textStyle="bold"
+                tools:ignore="HardcodedText" />
 
             <TextView
+                android:id="@+id/instructions"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/font_main"
@@ -134,5 +139,14 @@
         android:src="@drawable/ic_video"
         app:tint="@color/secondary"
         android:layout_marginBottom="@dimen/_3sdp"/>
+
+    <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:id="@+id/progress_bar"
+        app:layout_anchor="@id/appbar"
+        app:layout_anchorGravity="bottom"
+        android:visibility="gone"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ryutec.masterdetailfood.data.model.Meal
 import com.ryutec.masterdetailfood.data.model.MealList
-import com.ryutec.masterdetailfood.dominio.GetDetailsUseCase
 import com.ryutec.masterdetailfood.dominio.GetRandomMealUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -13,19 +12,16 @@ import javax.inject.Inject
 
 
 @HiltViewModel
-class MealViewModel @Inject constructor(
-    private val getDetailsUseCase:GetDetailsUseCase
+class HomeViewModel @Inject constructor(
+    private val getRandomMealUseCase: GetRandomMealUseCase
 ): ViewModel(){
-    val detailsMeal = MutableLiveData<Meal>()
-    val isloaded = MutableLiveData<Int>()
+    val randomMeal = MutableLiveData<Meal>()
 
-    fun onCreate(id:String){
+    fun onCreate(){
         viewModelScope.launch {
-            isloaded.postValue(1)
-            val result = getDetailsUseCase(id)
+            val result = getRandomMealUseCase()
             if (!result.idMeal.equals(null)){
-                detailsMeal.postValue(result)
-                isloaded.postValue(0)
+                randomMeal.postValue(result)
             }
         }
     }
