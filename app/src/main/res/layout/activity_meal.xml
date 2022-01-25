@@ -132,13 +132,15 @@
     </androidx.core.widget.NestedScrollView>
 
     <ImageView
+        android:foreground="?attr/selectableItemBackgroundBorderless"
         android:layout_width="@dimen/_40sdp"
         android:layout_height="@dimen/_40sdp"
         android:id="@+id/img_yt"
         android:layout_gravity="bottom|center"
         android:src="@drawable/ic_video"
         app:tint="@color/secondary"
-        android:layout_marginBottom="@dimen/_3sdp"/>
+        android:layout_marginBottom="@dimen/_3sdp"
+        tools:ignore="UnusedAttribute" />
 
     <com.google.android.material.progressindicator.LinearProgressIndicator
         android:layout_width="match_parent"

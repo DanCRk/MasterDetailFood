@@ -2,26 +2,21 @@ package com.ryutec.masterdetailfood.ui.view
 
 import android.content.Intent
 import android.net.Uri
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
-import com.ryutec.masterdetailfood.R
 import com.ryutec.masterdetailfood.databinding.ActivityMealBinding
-import com.ryutec.masterdetailfood.ui.viewmodel.HomeViewModel
 import com.ryutec.masterdetailfood.ui.viewmodel.MealViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import hilt_aggregated_deps._com_ryutec_masterdetailfood_ui_view_HomeFragment_GeneratedInjector
 
 @AndroidEntryPoint
 class MealActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMealBinding
     private val mealViewModel: MealViewModel by viewModels()
-
 
     private lateinit var mealId:String
     private lateinit var mealName:String
@@ -52,6 +47,7 @@ class MealActivity : AppCompatActivity() {
 
     private fun onYoutubeImgClick() {
         binding.imgYt.setOnClickListener{
+            Toast.makeText(this, "Opening link...",Toast.LENGTH_LONG).show()
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(mealUrl))
             startActivity(intent)
         }

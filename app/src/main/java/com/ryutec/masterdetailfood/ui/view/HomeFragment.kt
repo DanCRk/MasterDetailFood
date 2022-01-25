@@ -1,5 +1,6 @@
 package com.ryutec.masterdetailfood.ui.view
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,7 +9,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.ryutec.masterdetailfood.data.adapters.RecyclerAdapter
+import com.ryutec.masterdetailfood.data.model.CategoryMeal
 import com.ryutec.masterdetailfood.data.model.Meal
 import com.ryutec.masterdetailfood.databinding.FragmentHomeBinding
 import com.ryutec.masterdetailfood.ui.viewmodel.HomeViewModel
@@ -20,6 +24,8 @@ class HomeFragment : Fragment(){
     private val binding get() = _binding!!
     private val mealViewModel:HomeViewModel by viewModels()
     private lateinit var randomMeal:Meal
+    private lateinit var adapter: RecyclerAdapter
+    private val popularMealList = mutableListOf<CategoryMeal>()
 
     companion object{
         const val MEAL_ID = "com.ryutec.masterdetailfood.ui.view.idMeal"
@@ -36,22 +42,37 @@ class HomeFragment : Fragment(){
         return binding.root
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        mealViewModel.onCreate()
-
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        setRecyclerView()
+        mealViewModel.onCreate()
+        mealViewModel.getPopularMeal()
         mealViewModel.randomMeal.observe(this, {
             Glide.with(this).load(it.strMealThumb).into(binding.imgRandomMeal)
             randomMeal = it
-        })
 
+        })
+        mealViewModel.popularMeal.observe(this, {
+            popularMealList.addAll(it)
+            refreshRecycleView()
+        })
         onRandomMealClick()
 
+
+
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    private fun refreshRecycleView() { if(!popularMealList.isNullOrEmpty()){ adapter.notifyDataSetChanged() }else{ showError() } }
+
+    private fun showError(){ Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show() }
+
+    @SuppressLint("NotifyDataSetChanged")
+    private fun setRecyclerView() {
+        adapter = RecyclerAdapter(popularMealList)
+        binding.recViewMealsPopular.layoutManager =  LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        binding.recViewMealsPopular.adapter = adapter
+        adapter.notifyDataSetChanged()
     }
 
     private fun onRandomMealClick() {

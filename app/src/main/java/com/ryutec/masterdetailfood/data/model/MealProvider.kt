@@ -6,4 +6,5 @@ import javax.inject.Singleton
 @Singleton
 class MealProvider @Inject constructor() {
     lateinit var   meals: MealList
+    lateinit var   popularMeals: CategoryList
 }
