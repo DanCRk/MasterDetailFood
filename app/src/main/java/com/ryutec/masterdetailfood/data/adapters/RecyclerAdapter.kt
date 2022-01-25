@@ -1,14 +1,12 @@
 package com.ryutec.masterdetailfood.data.adapters
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.ryutec.masterdetailfood.R
 import com.ryutec.masterdetailfood.data.model.CategoryMeal
 
-class RecyclerAdapter(val mealLIst:List<CategoryMeal>) : RecyclerView.Adapter<ViewHolder>() {
+class RecyclerAdapter(private val mealLIst:List<CategoryMeal>, private val onClickListener:(CategoryMeal) -> Unit) : RecyclerView.Adapter<ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -16,7 +14,7 @@ class RecyclerAdapter(val mealLIst:List<CategoryMeal>) : RecyclerView.Adapter<Vi
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-       holder.bind(mealLIst[position])
+       holder.bind(mealLIst[position], onClickListener)
     }
 
     override fun getItemCount(): Int = mealLIst.size

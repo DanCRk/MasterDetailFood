@@ -7,17 +7,17 @@ import com.bumptech.glide.Glide
 import com.ryutec.masterdetailfood.data.model.CategoryMeal
 import com.ryutec.masterdetailfood.databinding.PopularMealsBinding
 
-class ViewHolder (val view: View):RecyclerView.ViewHolder(view){
+class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
 
-    val binding = PopularMealsBinding.bind(view)
+    private val binding = PopularMealsBinding.bind(view)
 
-    fun bind(meal:CategoryMeal){
+    fun bind(meal: CategoryMeal, onClickListener: (CategoryMeal) -> Unit) {
         Glide.with(view.context)
             .load(meal.strMealThumb)
             .into(binding.imgPopularMeal)
 
-        view.setOnClickListener{
-            Toast.makeText(view.context, meal.strMeal, Toast.LENGTH_LONG).show()
+        itemView.setOnClickListener {
+            onClickListener(meal)
         }
     }
 }

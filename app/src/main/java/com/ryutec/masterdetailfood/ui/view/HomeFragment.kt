@@ -17,17 +17,18 @@ import com.ryutec.masterdetailfood.data.model.Meal
 import com.ryutec.masterdetailfood.databinding.FragmentHomeBinding
 import com.ryutec.masterdetailfood.ui.viewmodel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
-@AndroidEntryPoint
-class HomeFragment : Fragment(){
 
-    private var _binding:FragmentHomeBinding? = null
+@AndroidEntryPoint
+class HomeFragment : Fragment() {
+
+    private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
-    private val mealViewModel:HomeViewModel by viewModels()
-    private lateinit var randomMeal:Meal
+    private val mealViewModel: HomeViewModel by viewModels()
+    private lateinit var randomMeal: Meal
     private lateinit var adapter: RecyclerAdapter
     private val popularMealList = mutableListOf<CategoryMeal>()
 
-    companion object{
+    companion object {
         const val MEAL_ID = "com.ryutec.masterdetailfood.ui.view.idMeal"
         const val MEAL_NAME = "com.ryutec.masterdetailfood.ui.view.nameMeal"
         const val MEAL_THUMB = "com.ryutec.masterdetailfood.ui.view.thumbMeal"
@@ -57,31 +58,46 @@ class HomeFragment : Fragment(){
             refreshRecycleView()
         })
         onRandomMealClick()
-
-
-
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    private fun refreshRecycleView() { if(!popularMealList.isNullOrEmpty()){ adapter.notifyDataSetChanged() }else{ showError() } }
+    private fun refreshRecycleView() {
+        if (!popularMealList.isNullOrEmpty()) {
+            adapter.notifyDataSetChanged()
+        } else {
+            showError()
+        }
+    }
 
-    private fun showError(){ Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show() }
+    private fun showError() {
+        Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show()
+    }
 
     @SuppressLint("NotifyDataSetChanged")
     private fun setRecyclerView() {
-        adapter = RecyclerAdapter(popularMealList)
-        binding.recViewMealsPopular.layoutManager =  LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        adapter = RecyclerAdapter(popularMealList) { meal -> onItemSelected(meal) }
+        binding.recViewMealsPopular.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         binding.recViewMealsPopular.adapter = adapter
         adapter.notifyDataSetChanged()
     }
 
+    private fun onItemSelected(meal: CategoryMeal) {
+        Toast.makeText(context, meal.strMeal, Toast.LENGTH_LONG).show()
+        val intent = Intent(this.context, MealActivity::class.java)
+        intent.putExtra(MEAL_ID, meal.idMeal)
+            .putExtra(MEAL_NAME, meal.strMeal)
+            .putExtra(MEAL_THUMB, meal.strMealThumb)
+        startActivity(intent)
+    }
+
     private fun onRandomMealClick() {
         binding.randomMeal.setOnClickListener {
-            Toast.makeText(context,randomMeal.strMeal,Toast.LENGTH_LONG).show()
+            Toast.makeText(context, randomMeal.strMeal, Toast.LENGTH_LONG).show()
             val intent = Intent(this.context, MealActivity::class.java)
-            intent.putExtra(MEAL_ID,randomMeal.idMeal)
-                .putExtra(MEAL_NAME,randomMeal.strMeal)
-                .putExtra(MEAL_THUMB,randomMeal.strMealThumb)
+            intent.putExtra(MEAL_ID, randomMeal.idMeal)
+                .putExtra(MEAL_NAME, randomMeal.strMeal)
+                .putExtra(MEAL_THUMB, randomMeal.strMealThumb)
             startActivity(intent)
         }
     }
