@@ -83,7 +83,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun onItemSelected(meal: CategoryMeal) {
-        Toast.makeText(context, meal.strMeal, Toast.LENGTH_LONG).show()
+        Toast.makeText(context, meal.strMeal, Toast.LENGTH_SHORT).show()
         val intent = Intent(this.context, MealActivity::class.java)
         intent.putExtra(MEAL_ID, meal.idMeal)
             .putExtra(MEAL_NAME, meal.strMeal)
@@ -93,7 +93,7 @@ class HomeFragment : Fragment() {
 
     private fun onRandomMealClick() {
         binding.randomMeal.setOnClickListener {
-            Toast.makeText(context, randomMeal.strMeal, Toast.LENGTH_LONG).show()
+            Toast.makeText(context, randomMeal.strMeal, Toast.LENGTH_SHORT).show()
             val intent = Intent(this.context, MealActivity::class.java)
             intent.putExtra(MEAL_ID, randomMeal.idMeal)
                 .putExtra(MEAL_NAME, randomMeal.strMeal)

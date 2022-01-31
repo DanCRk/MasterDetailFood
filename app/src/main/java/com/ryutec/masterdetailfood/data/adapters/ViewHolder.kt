@@ -1,7 +1,6 @@
 package com.ryutec.masterdetailfood.data.adapters
 
 import android.view.View
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.ryutec.masterdetailfood.data.model.CategoryMeal
